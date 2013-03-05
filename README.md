@@ -26,12 +26,8 @@ To use jQuery assert, include after jQuery and you good to go:
 <script src="jquery.assert.js"></script>
 ```
 
-<<<<<<< HEAD
 If an assertion isn't fullfilled, an exception gets thrown. So, if your code breaks, due to changes in the HTML for example, you will at least notice it. 
 When used consequently jQuery assert will solidify and tighten your code. 
-=======
-If an assertion isn't fullfilled, an exception gets thrown. So, if your code breaks, due to changes in the HTML for example, you will at least notice it.
-When used consequently jQuery assert will solidify and tighten your jQuery code.
 
 
 Options
@@ -67,4 +63,3 @@ execute the original function and assert the number of elements. Here's an examp
 ```
 
 For more examples take a look at the [unit tests](https://github.com/timbuethe/jquery-assert/blob/master/tests.js)
->>>>>>> options added
