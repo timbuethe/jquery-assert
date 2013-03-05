@@ -45,7 +45,7 @@ $.assert({option: 'value'})
 Extended jQuery functions
 -------------
 
-jQuery does not only add its own functions (like assertFound) but patches jQuery's built in functions as well. This functionality is disabled by default
+jQuery assert does not only add its own functions (like assertFound) but patches jQuery's built in functions as well. This functionality is disabled by default
 and users must opt-in to use it by setting 'extend-jquery' to true. Afterwards applicable functions take an extra parameter, the number of expected elements,
 execute the original function and assert the number of elements. Here's an example using jQuery's find:
 
@@ -61,5 +61,31 @@ execute the original function and assert the number of elements. Here's an examp
     $('#element04').find('p', 3)
  </script>
 ```
+
+The following jQuery function are monkey patched (if activated) and take an additional parameter, the number of expected elements.
+
+ * add
+ * addBack
+ * andSelf
+ * children
+ * closest
+ * end
+ * eq
+ * filter
+ * find
+ * has
+ * map
+ * next
+ * nextAll
+ * nextUntil
+ * not
+ * parent
+ * parents
+ * parentsUntil
+ * prev
+ * prevAll
+ * prevUntil
+ * siblings
+ * slice
 
 For more examples take a look at the [unit tests](https://github.com/timbuethe/jquery-assert/blob/master/tests.js)
