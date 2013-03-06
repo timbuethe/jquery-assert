@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>jQuery assert by timbuethe</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/timbuethe/jquery-assert">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/timbuethe/jquery-assert/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/timbuethe/jquery-assert/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>jQuery assert</h1>
+          <p>assertions for jQuery</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/timbuethe">timbuethe</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>jquery-assert</h1>
+
+<p>jQuery assert, let's you add assertions, to make sure your selectors find elements or match an expected number of elements. Here are some examples:</p>
+
+<p>Make sure, one or more elements were found, before calling the next function: </p>
+
+<div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'#element01'</span><span class="p">).</span><span class="nx">assertFound</span><span class="p">().</span><span class="nx">val</span><span class="p">(</span><span class="s1">'x'</span><span class="p">)</span>
+</pre></div>
+
+<p>Assert that 1 element was selected:</p>
+
+<div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'#element01'</span><span class="p">).</span><span class="nx">assertOne</span><span class="p">();</span> <span class="c1">// same as assertFound(1)</span>
+</pre></div>
+
+<p>Make sure a given number of elements were found before calling further functions:</p>
+
+<div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'.item'</span><span class="p">).</span><span class="nx">assertFound</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">'p'</span><span class="p">).</span><span class="nx">assertFound</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="nx">data</span><span class="p">(...)</span>
+</pre></div>
+
+<p>For more examples take a look at the <a href="https://github.com/timbuethe/jquery-assert/blob/master/tests.js">unit tests</a></p>
+
+<p>To use jQuery assert, include after jQuery and you good to go:</p>
+
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://code.jquery.com/jquery-latest.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"jquery.assert.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+
+<p>If an assertion isn't fullfilled, an exception gets thrown. So, if your code breaks, due to changes in the HTML for example, you will at least notice it. 
+When used consequently jQuery assert will solidify and tighten your code. </p>
+
+<h2>Options</h2>
+
+<p>You can set options like this:</p>
+
+<div class="highlight"><pre><span class="nx">$</span><span class="p">.</span><span class="nx">assert</span><span class="p">({</span><span class="nx">option</span><span class="o">:</span> <span class="s1">'value'</span><span class="p">})</span>
+</pre></div>
+
+<ul>
+<li>
+<strong>enabled</strong> (boolean, default: true) can be used to enable and disable assertions. This might be useful to disable assertions in production.</li>
+<li>
+<strong>extend-jquery</strong> (boolean, default: false) If enabled, jQuery-assert will extend (monkey patch) the original jQuery function, see blow.</li>
+</ul><h2>Extended jQuery functions</h2>
+
+<p>jQuery assert does not only add its own functions (like assertFound) but patches jQuery's built in functions as well. This functionality is disabled by default
+and users must opt-in to use it by setting 'extend-jquery' to true. Afterwards applicable functions take an extra parameter, the number of expected elements,
+execute the original function and assert the number of elements. Here's an example using jQuery's find:</p>
+
+<div class="highlight"><pre> <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://code.jquery.com/jquery-1.9.1.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+ <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"jquery.assert.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+ <span class="nt">&lt;script&gt;</span>
+
+    <span class="c1">// enable assertions as well as jQuery extension</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">assert</span><span class="p">({</span><span class="nx">enabled</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'extend-jquery'</span><span class="o">:</span> <span class="kc">true</span><span class="p">})</span>
+
+    <span class="c1">// use extended find and expect to find three elements</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#element04'</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">'p'</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+ <span class="nt">&lt;/script&gt;</span>
+</pre></div>
+
+<p>The following jQuery function are monkey patched (if activated) and take an additional parameter, the number of expected elements.</p>
+
+<ul>
+<li>add</li>
+<li>addBack</li>
+<li>andSelf</li>
+<li>children</li>
+<li>closest</li>
+<li>end</li>
+<li>eq</li>
+<li>filter</li>
+<li>find</li>
+<li>has</li>
+<li>map</li>
+<li>next</li>
+<li>nextAll</li>
+<li>nextUntil</li>
+<li>not</li>
+<li>parent</li>
+<li>parents</li>
+<li>parentsUntil</li>
+<li>prev</li>
+<li>prevAll</li>
+<li>prevUntil</li>
+<li>siblings</li>
+<li>slice</li>
+</ul><p>For more examples take a look at the <a href="https://github.com/timbuethe/jquery-assert/blob/master/tests.js">unit tests</a></p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
