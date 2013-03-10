@@ -1,7 +1,7 @@
 jquery-assert
 =============
 
-jQuery assert, let's you add assertions, to make sure your selectors find elements or match an expected number of elements. Here are some examples:
+jQuery assert, let's you add assertions to your jQuery code, to make sure your selectors find elements or match an expected number of elements. Here are some examples:
 
 Make sure, one or more elements were found, before calling the next function: 
 ```javascript
@@ -40,6 +40,7 @@ $.assert({option: 'value'})
 
  * __enabled__ (boolean, default: true) can be used to enable and disable assertions. This might be useful to disable assertions in production.
  * __extend-jquery__ (boolean, default: false) If enabled, jQuery-assert will extend (monkey patch) the original jQuery function, see blow.
+ * __debug__ (boolean, default: false) If enabled, jQuery assert will log debug messages to ```console.log```
 
 
 Extended jQuery functions
@@ -47,7 +48,7 @@ Extended jQuery functions
 
 jQuery assert does not only add its own functions (like assertFound) but patches jQuery's built in functions as well. This functionality is disabled by default
 and users must opt-in to use it by setting 'extend-jquery' to true. Afterwards applicable functions take an extra parameter, the number of expected elements,
-execute the original function and assert the number of elements. Here's an example using jQuery's find:
+execute the original function and assert the number of elements. Here are some examples:
 
 ```html
  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -57,13 +58,15 @@ execute the original function and assert the number of elements. Here's an examp
     // enable assertions as well as jQuery extension
     $.assert({enabled: true, 'extend-jquery': true})
 
-    // use extended find and expect to find three elements
-    $('#element04').find('p', 3)
+    // select an element by id and make sure it was found.
+    // then use extended find and expect to find three elements
+    $('#element04', 1).find('p', 3)
  </script>
 ```
 
 The following jQuery function are monkey patched (if activated) and take an additional parameter, the number of expected elements.
 
+ * jQuery
  * add
  * addBack
  * andSelf
