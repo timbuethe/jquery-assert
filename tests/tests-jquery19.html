@@ -21,11 +21,17 @@
   </div>
 
   <script src="http://code.jquery.com/qunit/qunit-1.11.0.js"></script>
-  <script src="http://code.jquery.com/jquery-1.5.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
   <script src="jquery.assert.js"></script>
   <script>
-      $.assert({enabled: true, 'extend-jquery': true})
+      $.assert({enabled: true, 'extend-jquery': true, debug: true})
+
+      QUnit.testStart(function(details){
+        console.log('QUnit:', details.module, details.name)
+      })
   </script>
   <script src="tests.js"></script>
+  <script src="tests-jquery15.js"></script>
+  <script src="tests-jquery19.js"></script>
 </body>
 </html>
