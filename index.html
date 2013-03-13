@@ -1,46 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>jQuery assert by timbuethe</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="jQuery assert : assertions for jQuery" />
 
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>jQuery assert</title>
   </head>
+
   <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/timbuethe/jquery-assert">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/timbuethe/jquery-assert/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/timbuethe/jquery-assert/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
 
-    <div class="wrapper">
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/timbuethe/jquery-assert">View on GitHub</a>
 
-      <section>
-        <div id="title">
-          <h1>jQuery assert</h1>
-          <p>assertions for jQuery</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/timbuethe">timbuethe</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
-        </div>
+          <h1 id="project_title">jQuery assert</h1>
+          <h2 id="project_tagline">assertions for jQuery</h2>
 
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/timbuethe/jquery-assert/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/timbuethe/jquery-assert/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
         <h1>jquery-assert</h1>
 
-<p>jQuery assert, let's you add assertions, to make sure your selectors find elements or match an expected number of elements. Here are some examples:</p>
+<p>jQuery assert, let's you add assertions to your jQuery code, to make sure your selectors find elements or match an expected number of elements. Here are some examples:</p>
 
 <p>Make sure, one or more elements were found, before calling the next function: </p>
 
@@ -80,11 +73,14 @@ When used consequently jQuery assert will solidify and tighten your code. </p>
 <strong>enabled</strong> (boolean, default: true) can be used to enable and disable assertions. This might be useful to disable assertions in production.</li>
 <li>
 <strong>extend-jquery</strong> (boolean, default: false) If enabled, jQuery-assert will extend (monkey patch) the original jQuery function, see blow.</li>
+<li>
+<strong>debug</strong> (boolean, default: false) If enabled, jQuery assert will log debug messages to <code>console.log</code>
+</li>
 </ul><h2>Extended jQuery functions</h2>
 
 <p>jQuery assert does not only add its own functions (like assertFound) but patches jQuery's built in functions as well. This functionality is disabled by default
 and users must opt-in to use it by setting 'extend-jquery' to true. Afterwards applicable functions take an extra parameter, the number of expected elements,
-execute the original function and assert the number of elements. Here's an example using jQuery's find:</p>
+execute the original function and assert the number of elements. Here are some examples:</p>
 
 <div class="highlight"><pre> <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"http://code.jquery.com/jquery-1.9.1.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"jquery.assert.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
@@ -93,14 +89,16 @@ execute the original function and assert the number of elements. Here's an examp
     <span class="c1">// enable assertions as well as jQuery extension</span>
     <span class="nx">$</span><span class="p">.</span><span class="nx">assert</span><span class="p">({</span><span class="nx">enabled</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="s1">'extend-jquery'</span><span class="o">:</span> <span class="kc">true</span><span class="p">})</span>
 
-    <span class="c1">// use extended find and expect to find three elements</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">'#element04'</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">'p'</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="c1">// select an element by id and make sure it was found.</span>
+    <span class="c1">// then use extended find and expect to find three elements</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#element04'</span><span class="p">,</span> <span class="mi">1</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">'p'</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
  <span class="nt">&lt;/script&gt;</span>
 </pre></div>
 
 <p>The following jQuery function are monkey patched (if activated) and take an additional parameter, the number of expected elements.</p>
 
 <ul>
+<li>jQuery</li>
 <li>add</li>
 <li>addBack</li>
 <li>andSelf</li>
@@ -126,9 +124,17 @@ execute the original function and assert the number of elements. Here's an examp
 <li>slice</li>
 </ul><p>For more examples take a look at the <a href="https://github.com/timbuethe/jquery-assert/blob/master/tests.js">unit tests</a></p>
       </section>
-
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">jQuery assert maintained by <a href="https://github.com/timbuethe">timbuethe</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
     
+
   </body>
 </html>
