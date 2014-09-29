@@ -18,7 +18,7 @@ Make sure a given number of elements were found before calling further functions
 $('.item').assertFound(10).find('p').assertFound(10).data(...)
 ```
 
-For more examples take a look at the [unit tests](https://github.com/timbuethe/jquery-assert/blob/master/tests.js)
+For more examples take a look at the [unit tests](https://github.com/timbuethe/jquery-assert/blob/master/tests/tests.js)
 
 To use jQuery assert, include after jQuery and you good to go:
 ```html
@@ -91,4 +91,4 @@ The following jQuery function are monkey patched (if activated) and take an addi
  * siblings
  * slice
 
-For more examples take a look at the [unit tests](https://github.com/timbuethe/jquery-assert/blob/master/tests.js)
+For more examples take a look at the [unit tests](https://github.com/timbuethe/jquery-assert/blob/master/tests/tests.js)
